@@ -1,4 +1,4 @@
-# Copy .kube from k8s cluster from master node
+# Copy .kube folder from k8s cluster from master node
 
 scp -r pi@192.168.0.102:~/.kube . <== here my pi ip address is 192.168.0.102
 
