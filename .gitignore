@@ -1,0 +1,13 @@
+target
+/work*
+*.iml
+/.idea
+.classpath
+.project
+.settings
+bin
+/src/main/webapp
+/gitlab-branch-source-plugin
+/jenkins-vol*
+.DS_Store
+
