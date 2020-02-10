@@ -12,3 +12,8 @@ docker run \
   -v /Volumes/Other/RandD/jenkens-k8s-cicd/jenkins-vol:/var/jenkins_home \
   -p 8080:8080 -d jenkins-docker-after-install
 </code></pre>
+
+#Simple docker dashboard
+<pre><code>
+docker run --name portainer -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+</code></pre>
