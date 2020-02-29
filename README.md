@@ -1,3 +1,19 @@
+# Install docker-compose in alpine container
+Docker Compose
+To install docker-compose, first install pip:
+<pre><code>
+apk add py-pip
+</pre></code>
+
+Since docker-compose version 1.24.0, you also need some dev dependencies:
+<pre><code>
+apk add python-dev libffi-dev openssl-dev gcc libc-dev make
+</pre></code>
+
+Then install docker-compose, run:
+<pre><code>
+pip install docker-compose
+</pre></code>
 # Copy .kube folder from k8s master node
 
 scp -r pi@192.168.0.102:~/.kube . <== here my pi ip address of master node is 192.168.0.102
