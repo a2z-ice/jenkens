@@ -16,7 +16,9 @@ RUN /usr/local/bin/install-plugins.sh workflow-aggregator && \
 RUN apk add --no-cache maven \
     openjdk8 \
     docker \
-    gettext
+    gettext \
+    py-pip python-dev libffi-dev openssl-dev gcc libc-dev make \
+    && pip install docker-compose
 
 
 RUN chown -R root "$JENKINS_HOME" /usr/share/jenkins/ref
