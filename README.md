@@ -20,7 +20,7 @@ chmod 400 .ssh/authorizeed_keys
 vi/nano/code pord (past prod file content here)
 # Try to ssh into production machine
 chmod 400 prod (change permission to prod file)
-ssh -i <prod ssh file> <user i.e. prod-user>@<ip or host name of the machine>
+ssh -i <<prod ssh file>> <<user i.e. prod-user>>@<<ip or host name of the machine>>
 # Create deploy folder in git project in jenkins for transfer configuration
 mkdir deploy && cd deploy
 vi deploy.sh
