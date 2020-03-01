@@ -3,7 +3,7 @@
 <pre><code>
 sudo useradd {user name i.e. prod-user}
 # Create ssh key in jenkins server
-ssh-keygen -f <any name i.e. prod then double return>
+ssh-keygen -f {any name i.e. prod then double return}
 # Copy ssh key content i.e prod.pub content
 cat prod.pub
 # Go to production/deployment pc and do following
