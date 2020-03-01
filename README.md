@@ -1,7 +1,7 @@
 # ssh connection
 # Create user
 <pre><code>
-sudo useradd <user name i.e. prod-user>
+sudo useradd {user name i.e. prod-user}
 # Create ssh key in jenkins server
 ssh-keygen -f <any name i.e. prod then double return>
 # Copy ssh key content i.e prod.pub content
@@ -29,11 +29,11 @@ vi deploy.sh
   echo $BUILD_TAG >> /tmp/.auth
   echo $PASS >> /tmp/.auth (the password of docker hub for image to push/pull)
   # to transfer the .auth file use scp
-  scp -i <prod ssh private key > /tmp/.auth <user i.e. prod-user>@<ip or host name of the machine>:/tmp/.auth
+  scp -i {prod ssh private key } /tmp/.auth {user i.e. prod-user}@{ip or host name of the machine}:/tmp/.auth
   # Use full path of prod file better place this file in /opt/ folder and use this path /opt/prod
 
 # to change woner to specific user id
-sudo chown 1000 <file with full location>
+sudo chown 1000 {file with full location}
   sudo chown 100 /opt/prod
 # go to production machine after run the /tmp/.auth copy instruction
 export IMAGE=$(sed -n '1p' /tmp/.auth) <--copy first line of a given file
@@ -48,7 +48,7 @@ export IMAGE=$(sed -n '1p' /tmp/.auth)
 export TAG=$(sed -n '2p' /tmp/.auth)
 export PASS=$(sed -n '3p' /tmp/.auth)
 
-docker login -u <username> -p $PASS
+docker login -u {username} -p $PASS
 cd ~/maven && docker-compose up -d
 # save and exit
 # Now set executable permission
