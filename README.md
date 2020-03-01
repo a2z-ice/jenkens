@@ -1,3 +1,39 @@
+# ssh connection
+# Create user
+<pre><code>
+sudo useradd <user name i.e. prod-user>
+# Create ssh key in jenkins server
+ssh-keygen -f <any name i.e. prod then double return>
+# Copy ssh key content i.e prod.pub content
+cat prod.pub
+# Go to production/deployment pc and do following
+sudo su
+su prod-user
+cd /home/prod-user/
+mkdir .ssh
+chmod 700 .ssh
+vi .ssh/authorizeed_keys (past the content of prod.pub content but remove the email address)
+chmod 400 .ssh/authorizeed_keys
+
+# From jenkins server copy file content from prod file using cat
+# Now from any pc create prod file using any editor
+vi/nano/code pord (past prod file content here)
+# Try to ssh into production machine
+chmod 400 prod (change permission to prod file)
+ssh -i <prod ssh file> <user i.e. prod-user>@<ip or host name of the machine>
+# Create deploy folder in git project in jenkins for transfer configuration
+mkdir deploy && cd deploy
+vi deploy.sh
+  #!/bin/sh
+  echo maven-project > /tmp/.auth
+  echo $BUILD_TAG >> /tmp/.auth
+  echo $PASS >> /tmp/.auth (the password of docker hub for image to push/pull)
+  # to transfer the .auth file use scp
+  scp -i <prod ssh private key > /tmp/.auth <user i.e. prod-user>@<ip or host name of the machine>:/tmp/.auth
+  # Use full path of prod file better place this file in /opt/ folder and use this path /opt/prod
+
+</pre></code>
+
 # Install docker-compose in alpine container
 Docker Compose
 To install docker-compose, first install pip:
