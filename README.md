@@ -32,7 +32,36 @@ vi deploy.sh
   scp -i <prod ssh private key > /tmp/.auth <user i.e. prod-user>@<ip or host name of the machine>:/tmp/.auth
   # Use full path of prod file better place this file in /opt/ folder and use this path /opt/prod
 
+# to change woner to specific user id
+sudo chown 1000 <file with full location>
+  sudo chown 100 /opt/prod
+# go to production machine after run the /tmp/.auth copy instruction
+export IMAGE=$(sed -n '1p' /tmp/.auth) <--copy first line of a given file
+export TAG=$(sed -n '2p' /tmp/.auth) <--copy second line of a given file
+export PASS=$(sed -n '3p' /tmp/.auth) <--copy third line of a given file
+
+# Create shell script for deployment in production pc
+vi deploy.sh
+ #!/bin/bash
+ 
+export IMAGE=$(sed -n '1p' /tmp/.auth)
+export TAG=$(sed -n '2p' /tmp/.auth)
+export PASS=$(sed -n '3p' /tmp/.auth)
+
+docker login -u <username> -p $PASS
+cd ~/maven && docker-compose up -d
+# save and exit
+# Now set executable permission
+chmod +x deploy.sh
+
+# After transfer publish and .auth file to deployment pc run following command to execute ublish.sh file
+
+ssh -i /opt/prod prod-user@ip-of-production-server "/tmp/publish"
+
 </pre></code>
+
+
+
 
 # Install docker-compose in alpine container
 Docker Compose
