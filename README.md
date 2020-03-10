@@ -19,6 +19,8 @@ RUN chmod 400 /ssh/of_ec2_instance.pem
 # to allow ip and host for prompless ssh
 RUN ssh-keyscan -H IP_ADDRS_OF_EC2_INSTANCE >> ~/.ssh/known_hosts
 RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+# known_hosts file will automatically be created and second instruction will be appended its content
+
 </code>
 </pre>
 
