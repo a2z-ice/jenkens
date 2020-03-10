@@ -1,3 +1,28 @@
+SSH without prompt
+
+<pre>
+<code>
+# setting up SSH
+RUN mkdir /root/.ssh 
+
+COPY ./cert/id_rsa /root/.ssh 
+COPY ./cert/id_rsa.pub /root/.ssh
+# allow user to read id_rsa file for ssh to git which is being create from a pc
+# id_rsa is private key and the public key is in github.com
+RUN chmod 400 /root/.ssh/id_rsa
+
+# Create folder to store of_ec2_instance.pem file of EC2 instance
+RUN mkdir /ssh 
+COPY ./cert/of_ec2_instance.pem /ssh
+RUN chmod 400 /ssh/of_ec2_instance.pem
+
+# to allow ip and host for prompless ssh
+RUN ssh-keyscan -H IP_ADDRS_OF_EC2_INSTANCE >> ~/.ssh/known_hosts
+RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+</code>
+</pre>
+
+
 for ssh connection https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/
 
 # ssh connection
