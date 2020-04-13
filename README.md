@@ -1,3 +1,43 @@
+
+# Docker java memory management
+<pre><code>
+logging:
+driver: "json-file"
+options:
+max-size: "200k"
+max-file: "10"
+
+----Older version of JDK---------
+How my vm shows MaxHeap in container
+docker run -it --rm --cpus=1 --memory=256M  openjdk:8u141-slim java -XX:+PrintFlagsFinal -version|grep MaxHeap
+
+Max Thread:
+
+docker run -it --rm --cpus=1 --memory=256M  openjdk:8u141-slim java -XX:+PrintFlagsFinal -version|grep Threads
+
+--
+docker pull openjdk:8u242-jre-buster
+
+
+----New version of JDK which is container aware---------
+docker run -it --rm --cpus=1 --memory=256M  openjdk:8u222-slim java -XX:+PrintFlagsFinal -XX:+UseParallelGC -XX:+UnlockDiagnosticVMOptions -XX:NativeMemoryTracking=summary -XX:+PrintNMTStatistics -version|grep MaxHeap
+
+docker run -it --rm --cpus=1 --memory=256M  openjdk:8u222-slim java -XX:+PrintFlagsFinal -XX:+UseParallelGC -XX:+UnlockDiagnosticVMOptions -XX:NativeMemoryTracking=summary -XX:+PrintNMTStatistics -version|grep Threads
+
+To run java with "-XX:NativeMemoryTracking=summary -XX:+PrintNMTStatistics" options gives you static of memory uplon successfull ending of java application
+
+# docker run using resource limit
+docker run -d --name mongo -p 30001:27017 -v /home/cent-master140/mongo-data:/data/db --cpus=0.25 --memory=75M mongo
+# remove if any
+docker ps -q --filter "name=mongo" | grep -q . && docker stop mongo && docker rm -f mongo
+
+# docker run env from file
+$ docker run --env-file=env_file_name alpine env
+
+# will return success but show error
+docker stop mongo || true && docker rm mongo || true
+</code></pre>
+
 SSH without prompt
 
 <pre>
