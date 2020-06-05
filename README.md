@@ -1,3 +1,7 @@
+<pre><code>
+In "Branch specifier" add "**/tags/*"
+In "Script path" add "deploy/k8s/k8s-jenkinsfile"
+</code></pre>
 
 # Docker java memory management
 <pre><code>
