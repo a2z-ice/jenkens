@@ -1,4 +1,11 @@
 <pre><code>
+docker run   -v /var/run/docker.sock:/var/run/docker.sock \
+-v /home/kubernet/jenkins-data:/var/jenkins_home \
+--restart=always \
+--name jenkins-k8s \
+-e JENKINS_DATA_LOCATION="/Volumes/Other/project/batworld/jenkins-cicd/volume-data" \
+-p 8080:8080 -d k8s-jenkins
+
 In "Branch specifier" add "**/tags/*"
 In "Script path" add "deploy/k8s/k8s-jenkinsfile"
 </code></pre>
