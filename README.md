@@ -1,6 +1,6 @@
 <pre><code>
 docker run   -v /var/run/docker.sock:/var/run/docker.sock \
--v /home/kubernet/jenkins-data:/var/jenkins_home \
+-v /Volumes/Other/project/batworld/jenkins-cicd/volume-data:/var/jenkins_home \
 --restart=always \
 --name jenkins-k8s \
 -e JENKINS_DATA_LOCATION="/Volumes/Other/project/batworld/jenkins-cicd/volume-data" \
